@@ -1,12 +1,7 @@
 import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { Configuration } from 'webpack';
 import type { Configuration as DevServerConfiguration } from 'webpack-dev-server';
-
-const devServer: DevServerConfiguration = {
-  static: path.join(__dirname, 'src'),
-  compress: true,
-  port: 4000,
-};
 
 const config: Configuration = {
   entry: './src/index.ts',
@@ -26,7 +21,16 @@ const config: Configuration = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
-  devServer: devServer,
+  devServer: {
+    static: path.join(__dirname, 'src'),
+    compress: true,
+    port: 4000,
+  } as DevServerConfiguration,
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    })
+  ]
 };
 
 export default config;
