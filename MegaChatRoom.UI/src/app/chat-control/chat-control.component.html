@@ -1,0 +1,9 @@
+<form [formGroup]="chatForm">
+  <input type="text" formControlName="message" required>
+  <div *ngIf="message.invalid && (message.dirty || message.touched)">
+    <div *ngIf="message.errors?.['required']">
+      Message is required!
+    </div>
+  </div>
+  <button type="submit">Send</button>
+</form>

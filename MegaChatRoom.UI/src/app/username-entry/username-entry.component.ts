@@ -4,6 +4,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-username-entry',
@@ -19,7 +20,7 @@ export class UsernameEntryComponent {
     ])
   });
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   get username() {
     return this.usernameForm.get('username')!;
@@ -28,6 +29,7 @@ export class UsernameEntryComponent {
   setUsername(): void {
     if (this.usernameForm.valid) {
       localStorage.setItem('username', this.username.value);
+      this.router.navigateByUrl('/chat-room');
     }
   }
 }
