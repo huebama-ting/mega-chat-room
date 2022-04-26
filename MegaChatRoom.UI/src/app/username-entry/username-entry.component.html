@@ -1,18 +1,16 @@
 <h1>Enter a username!</h1>
 <form [formGroup]="usernameForm" (ngSubmit)="setUsername()">
-  <div>
-    <label for="username">Username: </label>
-    <input type="text" id="username" formControlName="username" required>
-    <div *ngIf="username.invalid && (username.dirty || username.touched)">
-      <div *ngIf="username.errors?.['required']">
-        Username is required!
-      </div>
-      <div *ngIf="username.errors?.['minlength']">
-        Username must be longer than 3 characters!
-      </div>
-      <div *ngIf="username.errors?.['maxlength']">
-        Username must be shorter than 32 characters!
-      </div>
+  <label for="username">Username: </label>
+  <input type="text" id="username" formControlName="username" required>
+  <div *ngIf="username.invalid && (username.dirty || username.touched)">
+    <div *ngIf="username.errors?.['required']">
+      Username is required!
+    </div>
+    <div *ngIf="username.errors?.['minlength']">
+      Username must be longer than 3 characters!
+    </div>
+    <div *ngIf="username.errors?.['maxlength']">
+      Username must be shorter than 32 characters!
     </div>
   </div>
   <button type="submit">Submit</button>
