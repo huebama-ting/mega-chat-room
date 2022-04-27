@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 
+import { ChatMessageComponent } from 'src/app/components/chat-message/chat-message.component';
+import { ChatMessageDirective } from 'src/app/directives/chat-message/chat-message.directive';
 import { SignalRService } from 'src/app/services/signal-r/signal-r.service';
 
 @Component({
@@ -8,20 +15,22 @@ import { SignalRService } from 'src/app/services/signal-r/signal-r.service';
   styleUrls: ['./chat-display.component.scss']
 })
 export class ChatDisplayComponent implements OnInit {
+  @ViewChild(ChatMessageDirective, { static: true }) chatContainer!: ChatMessageDirective;
   messageArea!: HTMLElement;
 
   constructor(private signalRService: SignalRService) { }
 
   ngOnInit(): void {
-    this.configureListeners(this.displayChat);
+    this.signalRService.hubConnection.on('messageReceived', this.displayChat);
   }
 
   configureListeners(handler: (username: string, message: string) => void): void {
-    this.signalRService.hubConnection.on('messageReceived', handler);
+     this.signalRService.hubConnection.on('messageReceived', handler);
   }
 
-  displayChat(username: string, message: string): void {
-    this.messageArea = document.getElementById('message-area')!;
-    this.messageArea.innerText += `${username}: ${message}\n`;
+  displayChat = (username: string, message: string) => {
+    const chatMessage = this.chatContainer.viewContainerRef.createComponent<ChatMessageComponent>(ChatMessageComponent);
+    chatMessage.instance.username = username;
+    chatMessage.instance.message = message;
   }
 }
