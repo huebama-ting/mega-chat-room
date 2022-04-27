@@ -27,6 +27,7 @@ export class ChatControlComponent {
   sendChat(): void {
     if (this.chatForm.valid) {
       this.messageService.sendMessage(this.message.value);
+      this.chatForm.reset();
     }
   }
 }
