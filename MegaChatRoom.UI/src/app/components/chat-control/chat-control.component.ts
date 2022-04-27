@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 
-import { MessageService } from '../services/message/message.service';
+import { MessageService } from 'src/app/services/message/message.service';
 
 @Component({
   selector: 'app-chat-control',
@@ -15,11 +20,11 @@ export class ChatControlComponent {
 
   constructor(private messageService: MessageService) { }
 
-  get message() {
-    return this.chatForm.get('message')!;
+  get message(): AbstractControl {
+    return this.chatForm.get('message') as AbstractControl;
   }
 
-  sendChat() {
+  sendChat(): void {
     if (this.chatForm.valid) {
       this.messageService.sendMessage(this.message.value);
     }

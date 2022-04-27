@@ -2,20 +2,22 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { ChatControlComponent } from 'src/app/components/chat-control/chat-control.component';
+import { ChatMessageComponent } from './components/chat-message/chat-message.component';
+import { ChatRoomComponent } from 'src/app/components/chat-room/chat-room.component';
+import { UsernameEntryComponent } from 'src/app/components/username-entry/username-entry.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UsernameEntryComponent } from './username-entry/username-entry.component';
-import { ChatRoomComponent } from './chat-room/chat-room.component';
-import { ChatDisplayComponent } from './chat-display/chat-display.component';
-import { ChatControlComponent } from './chat-control/chat-control.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsernameEntryComponent,
-    ChatRoomComponent,
+    ChatControlComponent,
     ChatDisplayComponent,
     ChatControlComponent
+    ChatRoomComponent,
+    UsernameEntryComponent
   ],
   imports: [
     AppRoutingModule,

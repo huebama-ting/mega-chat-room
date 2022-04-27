@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   Validators
@@ -22,8 +23,8 @@ export class UsernameEntryComponent {
 
   constructor(private router: Router) { }
 
-  get username() {
-    return this.usernameForm.get('username')!;
+  get username(): AbstractControl {
+    return this.usernameForm.get('username') as AbstractControl;
   }
 
   setUsername(): void {

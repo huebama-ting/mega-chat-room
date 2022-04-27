@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
-import { SignalRService } from '../services/signal-r/signal-r.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-chat-room',
@@ -8,6 +6,5 @@ import { SignalRService } from '../services/signal-r/signal-r.service';
   styleUrls: ['./chat-room.component.scss']
 })
 export class ChatRoomComponent {
-
   constructor() { }
 }

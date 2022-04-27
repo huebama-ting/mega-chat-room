@@ -8,7 +8,7 @@ import { SignalRService } from '../signal-r/signal-r.service';
 export class MessageService {
   constructor(private signalRService: SignalRService) { }
 
-  sendMessage(message: string) {
+  sendMessage(message: string): void {
     this.signalRService.sendMessage(message);
   }
 }

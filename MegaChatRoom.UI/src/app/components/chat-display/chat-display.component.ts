@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SignalRService } from '../services/signal-r/signal-r.service';
+import { SignalRService } from 'src/app/services/signal-r/signal-r.service';
 
 @Component({
   selector: 'app-chat-display',
@@ -16,11 +16,11 @@ export class ChatDisplayComponent implements OnInit {
     this.configureListeners(this.displayChat);
   }
 
-  configureListeners(handler: (username: string, message: string) => void) {
+  configureListeners(handler: (username: string, message: string) => void): void {
     this.signalRService.hubConnection.on('messageReceived', handler);
   }
 
-  displayChat(username: string, message: string) {
+  displayChat(username: string, message: string): void {
     this.messageArea = document.getElementById('message-area')!;
     this.messageArea.innerText += `${username}: ${message}\n`;
   }

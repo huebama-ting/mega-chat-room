@@ -13,7 +13,7 @@ export class SignalRService {
     this.hubConnection.start().catch((err) => console.log(err));
   }
 
-  sendMessage(message: string) {
+  sendMessage(message: string): void {
     this.hubConnection.send('sendMessage', localStorage.getItem('username'), message);
   }
 }
