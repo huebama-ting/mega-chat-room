@@ -9,7 +9,7 @@ var app = builder.Build();
 
 app.UseCors((builder) =>
 {
-    builder.WithOrigins("http://localhost:4000")
+    builder.WithOrigins("http://localhost:4200")
             .AllowAnyHeader()
             .WithMethods("GET", "POST")
             .AllowCredentials();
