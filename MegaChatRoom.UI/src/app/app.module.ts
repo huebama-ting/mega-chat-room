@@ -7,6 +7,7 @@ import { ChatDisplayComponent } from 'src/app/components/chat-display/chat-displ
 import { ChatMessageComponent } from './components/chat-message/chat-message.component';
 import { ChatMessageDirective } from 'src/app/directives/chat-message/chat-message.directive';
 import { ChatRoomComponent } from 'src/app/components/chat-room/chat-room.component';
+import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
 import { UsernameEntryComponent } from 'src/app/components/username-entry/username-entry.component';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
     ChatMessageComponent,
     ChatMessageDirective,
     ChatRoomComponent,
+    ScrollDirective,
     UsernameEntryComponent
   ],
   imports: [
