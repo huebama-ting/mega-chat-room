@@ -6,7 +6,7 @@ namespace MegaChatRoom.API.Hubs
     {
         public async Task SendMessage(string username, string message)
         {
-            await Clients.Others.SendAsync("messageReceived", username, message);
+            await Clients.All.SendAsync("messageReceived", username, message);
         }
     }
 }
