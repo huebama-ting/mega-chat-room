@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 
+import { ChatMessageUser } from 'src/app/shared/models/chat/chat-message-user.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +15,7 @@ export class SignalRService {
     this.hubConnection.start().catch((err) => console.log(err));
   }
 
-  sendMessage(message: string): void {
-    this.hubConnection.send('sendMessage', localStorage.getItem('username'), message);
+  sendMessage(message: ChatMessageUser): void {
+    this.hubConnection.send('sendMessage', message);
   }
 }

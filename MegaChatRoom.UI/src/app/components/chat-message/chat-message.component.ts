@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChatMessageUser } from 'src/app/shared/models/chat/chat-message-user.model';
 
 @Component({
   selector: 'app-chat-message',
@@ -6,8 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./chat-message.component.scss']
 })
 export class ChatMessageComponent {
-  username = '';
-  message = '';
-
+  chatMessage: ChatMessageUser = {
+    message: '',
+    timestamp: '',
+    username: ''
+  };
+  
   constructor() { }
 }

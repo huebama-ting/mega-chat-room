@@ -9,6 +9,7 @@ import { ChatMessageComponent } from 'src/app/components/chat-message/chat-messa
 import { ChatMessageDirective } from 'src/app/directives/chat-message/chat-message.directive';
 import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
 import { SignalRService } from 'src/app/services/signal-r/signal-r.service';
+import { ChatMessageUser } from 'src/app/shared/models/chat/chat-message-user.model';
 
 @Component({
   selector: 'app-chat-display',
@@ -25,18 +26,19 @@ export class ChatDisplayComponent implements OnInit {
     this.configureListeners(this.displayChat);
   }
 
-  configureListeners(handler: (username: string, message: string) => void): void {
+  configureListeners(handler: (chat: ChatMessageUser) => void): void {
      this.signalRService.hubConnection.on('messageReceived', handler);
   }
 
-  displayChat = (username: string, message: string) => {
-    this.createMessageComponent(username, message);
+  displayChat = (chat: ChatMessageUser) => {
+    this.createMessageComponent(chat);
     this.chatContainer.scrollToBottom();
   }
 
-  createMessageComponent(username: string, message: string): void {
+  createMessageComponent(chat: ChatMessageUser): void {
     const chatMessage = this.chatMessageContainer.viewContainerRef.createComponent<ChatMessageComponent>(ChatMessageComponent);
-    chatMessage.instance.username = username;
-    chatMessage.instance.message = message;
+    chatMessage.instance.chatMessage.username = chat.username;
+    chatMessage.instance.chatMessage.message = chat.message;
+    chatMessage.instance.chatMessage.timestamp = chat.timestamp;
   }
 }
