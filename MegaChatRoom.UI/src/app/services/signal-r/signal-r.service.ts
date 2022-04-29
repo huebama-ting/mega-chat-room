@@ -11,8 +11,12 @@ export class SignalRService {
 
   constructor() {
     this.hubConnection = new signalR.HubConnectionBuilder().withUrl('http://localhost:5073/hub').build();
+  }
 
-    this.hubConnection.start().catch((err) => console.log(err));
+  startConnection(): () => Promise<void> {
+    return () => {
+      return this.hubConnection.start().catch((err) => console.log(err));
+    };
   }
 
   sendMessage(message: ChatMessageUser): void {

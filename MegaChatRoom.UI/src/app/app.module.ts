@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -12,6 +12,7 @@ import { UsernameEntryComponent } from 'src/app/components/username-entry/userna
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SignalRService } from './services/signal-r/signal-r.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,14 @@ import { AppComponent } from './app.component';
     BrowserModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    SignalRService, {
+      provide: APP_INITIALIZER,
+      useFactory: (signalRService: SignalRService) => signalRService.startConnection(),
+      deps: [SignalRService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

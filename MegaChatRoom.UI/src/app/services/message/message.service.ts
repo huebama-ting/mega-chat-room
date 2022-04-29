@@ -10,13 +10,15 @@ import { ChatMessageUser } from 'src/app/shared/models/chat/chat-message-user.mo
 export class MessageService {
   constructor(private signalRService: SignalRService) { }
 
-  sendMessage(messageContent: string): void {
-    const message: ChatMessageUser = {
-      username: localStorage.getItem('username') ?? 'System',
+  buildMessage(messageContent: string, username?: string): ChatMessageUser {
+    return {
+      username: username ?? localStorage.getItem('username') as string,
       message: messageContent,
       timestamp: moment().format('yy/MM/DD, HH:mm')
     };
+  }
 
-    this.signalRService.sendMessage(message);
+  sendUserMessage(messageContent: string, username?: string): void {
+    this.signalRService.sendMessage(this.buildMessage(messageContent, username));
   }
 }
