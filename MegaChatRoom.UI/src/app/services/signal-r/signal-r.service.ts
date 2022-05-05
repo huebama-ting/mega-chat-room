@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 
 import { ChatMessageUser } from 'src/app/shared/models/chat/chat-message-user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class SignalRService {
   hubConnection: signalR.HubConnection;
 
   constructor() {
-    this.hubConnection = new signalR.HubConnectionBuilder().withUrl('http://localhost:5073/hub').build();
+    this.hubConnection = new signalR.HubConnectionBuilder().withUrl(environment.signalRHub).build();
   }
 
   startConnection(): () => Promise<void> {
