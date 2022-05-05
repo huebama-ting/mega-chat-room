@@ -8,11 +8,11 @@ import { ChatMessageComponent } from './components/chat-message/chat-message.com
 import { ChatMessageDirective } from 'src/app/directives/chat-message/chat-message.directive';
 import { ChatRoomComponent } from 'src/app/components/chat-room/chat-room.component';
 import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
+import { SignalRService } from 'src/app/services/signal-r/signal-r.service';
 import { UsernameEntryComponent } from 'src/app/components/username-entry/username-entry.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignalRService } from './services/signal-r/signal-r.service';
 
 @NgModule({
   declarations: [

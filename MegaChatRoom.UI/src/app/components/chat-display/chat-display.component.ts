@@ -1,6 +1,5 @@
 import {
   Component,
-  ElementRef,
   OnInit,
   ViewChild
 } from '@angular/core';
@@ -33,7 +32,7 @@ export class ChatDisplayComponent implements OnInit {
   displayChat = (chat: ChatMessageUser) => {
     this.createMessageComponent(chat);
     this.chatContainer.scrollToBottom();
-  }
+  };
 
   createMessageComponent(chat: ChatMessageUser): void {
     const chatMessage = this.chatMessageContainer.viewContainerRef.createComponent<ChatMessageComponent>(ChatMessageComponent);

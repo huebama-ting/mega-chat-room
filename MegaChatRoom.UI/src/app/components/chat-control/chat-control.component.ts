@@ -16,7 +16,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 export class ChatControlComponent {
   chatForm = new FormGroup({
     message: new FormControl('', Validators.required)
-  })
+  });
 
   constructor(private messageService: MessageService) { }
 
