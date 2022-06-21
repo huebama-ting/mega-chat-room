@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaChatRoom.API", "MegaChatRoom.API\MegaChatRoom.API.csproj", "{A5F8CE62-95B8-432D-8E6A-2253E17C7B62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaChatRoom.API", "MegaChatRoom.API\MegaChatRoom.API.csproj", "{A5F8CE62-95B8-432D-8E6A-2253E17C7B62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaChatRoom.Messages", "MegaChatRoom.Messages\MegaChatRoom.Messages.csproj", "{B305A397-32ED-47E5-A104-5C3913809F0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A5F8CE62-95B8-432D-8E6A-2253E17C7B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5F8CE62-95B8-432D-8E6A-2253E17C7B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5F8CE62-95B8-432D-8E6A-2253E17C7B62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B305A397-32ED-47E5-A104-5C3913809F0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B305A397-32ED-47E5-A104-5C3913809F0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B305A397-32ED-47E5-A104-5C3913809F0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B305A397-32ED-47E5-A104-5C3913809F0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
