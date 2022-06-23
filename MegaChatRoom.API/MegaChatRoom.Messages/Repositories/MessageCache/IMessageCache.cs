@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MegaChatRoom.Messages.Repositories.Base;
 
 namespace MegaChatRoom.Messages.Repositories.MessageCache
 {
-    public interface IMessageCache
+    public interface IMessageCache : IRepository
     {
         Task<Message> GetAsync(Guid id);
         Task SaveAsync(Message message);
