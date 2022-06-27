@@ -36,5 +36,5 @@ export class MessageService {
         timestamp: this.lastMessageTimestamp
       }
     });
-  } 
+  }
 }

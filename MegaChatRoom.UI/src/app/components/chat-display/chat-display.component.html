@@ -1,6 +1,7 @@
 <div class="chat-container" scroll>
   <div>
     <button (click)="loadMessages()">Load</button>
+    <div *ngIf="messagesExhausted">No more messages to load!</div>
   </div>
   <ng-container chatMessage></ng-container>
 </div>
