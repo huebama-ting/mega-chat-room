@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import { Observable } from 'rxjs';
 
 import { SignalRService } from 'src/app/services/signal-r/signal-r.service';
 import { ChatMessageUser } from 'src/app/shared/models/chat/chat-message-user.model';
@@ -8,17 +10,31 @@ import { ChatMessageUser } from 'src/app/shared/models/chat/chat-message-user.mo
   providedIn: 'root'
 })
 export class MessageService {
-  constructor(private signalRService: SignalRService) { }
+  private lastMessageTimestamp!: string;
+
+  constructor(private http: HttpClient, private signalRService: SignalRService) { }
+
+  setLastMessageTimestamp(value: string): void {
+    this.lastMessageTimestamp = value;
+  }
 
   buildMessage(messageContent: string, username?: string): ChatMessageUser {
     return {
       username: username ?? localStorage.getItem('username') as string,
       message: messageContent,
-      timestamp: moment().format('yy/MM/DD, HH:mm')
+      timestamp: dayjs().toISOString()
     };
   }
 
   sendUserMessage(messageContent: string, username?: string): void {
     this.signalRService.sendMessage(this.buildMessage(messageContent, username));
   }
+
+  getMessages(): Observable<ChatMessageUser[]> {
+    return this.http.get<ChatMessageUser[]>('https://localhost:7073/api/v1/messages', {
+      params: {
+        timestamp: this.lastMessageTimestamp
+      }
+    });
+  } 
 }

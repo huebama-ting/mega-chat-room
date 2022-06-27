@@ -2,8 +2,10 @@
 
 using MegaChatRoom.Messages.Configuration;
 using MegaChatRoom.Messages.Repositories.Base;
+using MegaChatRoom.Messages.Serializers;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Options;
+using System.Text.Json;
 
 namespace MegaChatRoom.Messages.Factories.Base
 {
@@ -49,10 +51,10 @@ namespace MegaChatRoom.Messages.Factories.Base
         {
             var clientOptions = new CosmosClientOptions()
             {
-                SerializerOptions = new CosmosSerializationOptions()
+                Serializer = new NativeJsonSerializer(new JsonSerializerOptions()
                 {
-                    PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase,
-                }
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                })
             };
             var connectionString = $"AccountEndpoint={_uri};AccountKey={_dbKey}";
             _cosmosClient = new CosmosClient(connectionString, clientOptions);

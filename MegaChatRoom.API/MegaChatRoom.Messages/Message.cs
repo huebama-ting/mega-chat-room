@@ -1,5 +1,7 @@
 ﻿#nullable disable
 
+using System.Text.Json.Serialization;
+
 namespace MegaChatRoom.Messages
 {
     public class Message

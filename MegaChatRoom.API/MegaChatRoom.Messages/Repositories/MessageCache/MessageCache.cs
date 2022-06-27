@@ -16,6 +16,25 @@ namespace MegaChatRoom.Messages.Repositories.MessageCache
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<Message>> GetMultipleAsync(string timestamp)
+        {
+            var messages = new List<Message>();
+            using FeedIterator<Message> feed = _container.GetItemQueryIterator<Message>(
+                queryText: $"SELECT TOP 10 * FROM c WHERE c.timestamp < \"{timestamp}\" ORDER BY c.timestamp DESC");
+
+            while (feed.HasMoreResults)
+            {
+                var response = await feed.ReadNextAsync();
+
+                foreach (var item in response)
+                {
+                    messages.Insert(0, item);
+                }
+            }
+
+            return messages;
+        }
+
         public async Task SaveAsync(Message message)
         {
             try

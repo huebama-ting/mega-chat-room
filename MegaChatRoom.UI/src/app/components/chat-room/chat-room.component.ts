@@ -11,7 +11,7 @@ export class ChatRoomComponent implements AfterViewInit {
   constructor(private messageService: MessageService) { }
 
   ngAfterViewInit(): void {
-    this.sendJoinMessage();
+    //this.sendJoinMessage();
   }
 
   sendJoinMessage(): void {

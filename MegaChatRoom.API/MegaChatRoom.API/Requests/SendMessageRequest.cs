@@ -1,4 +1,5 @@
 ﻿#nullable disable
+
 namespace MegaChatRoom.API.Requests
 {
     public class SendMessageRequest

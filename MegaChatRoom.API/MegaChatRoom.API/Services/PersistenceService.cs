@@ -1,4 +1,5 @@
-﻿using MegaChatRoom.API.Requests;
+﻿using AutoMapper;
+using MegaChatRoom.API.Requests;
 using MegaChatRoom.API.Services.Interfaces;
 using MegaChatRoom.Messages;
 using MegaChatRoom.Messages.Factories.MessageCache;
@@ -9,15 +10,20 @@ namespace MegaChatRoom.API.Services
     public class PersistenceService : IPersistenceService
     {
         private readonly IMessageCacheFactory<IMessageCache> _messageCacheFactory;
+        private readonly IMapper _mapper;
 
-        public PersistenceService(IMessageCacheFactory<IMessageCache> factory)
+        public PersistenceService(IMessageCacheFactory<IMessageCache> factory, IMapper mapper)
         {
             _messageCacheFactory = factory;
+            _mapper = mapper;
         }
 
-        public Task<IEnumerable<SendMessageRequest>> GetMessages()
+        public async Task<IEnumerable<SendMessageRequest>> GetMessages(string timestamp)
         {
-            throw new NotImplementedException();
+            var repository = await _messageCacheFactory.CreateAsync();
+            var results = _mapper.Map<List<SendMessageRequest>>(await repository.GetMultipleAsync(timestamp));
+
+            return results;
         }
 
         public async Task SaveMessage(SendMessageRequest message)

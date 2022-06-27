@@ -1,14 +1,16 @@
 using MegaChatRoom.API.Extensions;
 using MegaChatRoom.API.Hubs;
+using MegaChatRoom.API.MapperProfiles;
 using MegaChatRoom.Messages.Configuration;
 using MegaChatRoom.Messages.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
 builder.Services.AddSignalR();
-builder.Services.AddCors();
 builder.Services.AddOptions();
 builder.Services.Configure<MessagesConfiguration>(builder.Configuration.GetSection("NoSql"));
+builder.Services.AddAutoMapper(typeof(MessagesMappingProfile));
 builder.Services.AddMessagesConfig();
 builder.Services.AddApiServices();
 
@@ -21,5 +23,6 @@ app.UseCors((builder) =>
            .AllowAnyHeader()
            .AllowCredentials();
 });
+app.MapControllers();
 app.MapHub<ChatHub>("/hub");
 app.Run();
