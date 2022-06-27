@@ -1,13 +1,13 @@
 ﻿#nullable disable
 
 using MegaChatRoom.Messages.Configuration;
-using MegaChatRoom.Messages.Repositories.Base;
-using MegaChatRoom.Messages.Serializers;
+using MegaChatRoom.Messages.Repositories.Repositories.Base;
+using MegaChatRoom.Messages.Repositories.Serializers;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Options;
 using System.Text.Json;
 
-namespace MegaChatRoom.Messages.Factories.Base
+namespace MegaChatRoom.Messages.Repositories.Factories.Base
 {
     public abstract class BaseRepositoryFactory<T> : IBaseRepositoryFactory<T> where T : IRepository
     {

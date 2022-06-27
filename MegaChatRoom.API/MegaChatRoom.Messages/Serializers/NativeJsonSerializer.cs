@@ -2,7 +2,7 @@
 using Azure.Core.Serialization;
 using Microsoft.Azure.Cosmos;
 
-namespace MegaChatRoom.Messages.Serializers
+namespace MegaChatRoom.Messages.Repositories.Serializers
 {
     public class NativeJsonSerializer : CosmosSerializer
     {

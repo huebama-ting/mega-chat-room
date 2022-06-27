@@ -1,12 +1,12 @@
 ﻿using Microsoft.Azure.Cosmos;
 
-namespace MegaChatRoom.Messages.Repositories.MessageCache
+namespace MegaChatRoom.Messages.Repositories.Repositories.CosmosMessages
 {
-    public class MessageCache : IMessageCache
+    public class CosmosMessagesRepository : ICosmosMessagesRepository
     {
         private readonly Container _container;
 
-        public MessageCache(Container container)
+        public CosmosMessagesRepository(Container container)
         {
             _container = container;
         }

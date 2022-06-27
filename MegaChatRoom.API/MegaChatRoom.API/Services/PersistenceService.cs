@@ -2,17 +2,17 @@
 using MegaChatRoom.API.Requests;
 using MegaChatRoom.API.Services.Interfaces;
 using MegaChatRoom.Messages;
-using MegaChatRoom.Messages.Factories.MessageCache;
-using MegaChatRoom.Messages.Repositories.MessageCache;
+using MegaChatRoom.Messages.Repositories.Factories.CosmosMessages;
+using MegaChatRoom.Messages.Repositories.Repositories.CosmosMessages;
 
 namespace MegaChatRoom.API.Services
 {
     public class PersistenceService : IPersistenceService
     {
-        private readonly IMessageCacheFactory<IMessageCache> _messageCacheFactory;
+        private readonly ICosmosMessagesFactory<ICosmosMessagesRepository> _messageCacheFactory;
         private readonly IMapper _mapper;
 
-        public PersistenceService(IMessageCacheFactory<IMessageCache> factory, IMapper mapper)
+        public PersistenceService(ICosmosMessagesFactory<ICosmosMessagesRepository> factory, IMapper mapper)
         {
             _messageCacheFactory = factory;
             _mapper = mapper;

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MegaChatRoom.Messages\MegaChatRoom.Messages.csproj" />
+    <ProjectReference Include="..\MegaChatRoom.Messages\MegaChatRoom.Messages.Repositories.csproj" />
   </ItemGroup>
 
 </Project>
