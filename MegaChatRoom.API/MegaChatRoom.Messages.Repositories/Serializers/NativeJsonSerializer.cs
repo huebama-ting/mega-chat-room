@@ -1,6 +1,8 @@
-﻿using System.Text.Json;
+﻿#nullable disable
+
 using Azure.Core.Serialization;
 using Microsoft.Azure.Cosmos;
+using System.Text.Json;
 
 namespace MegaChatRoom.Messages.Repositories.Serializers
 {
@@ -17,8 +19,7 @@ namespace MegaChatRoom.Messages.Repositories.Serializers
         {
             using (stream)
             {
-                if (stream.CanSeek
-                       && stream.Length == 0)
+                if (stream.CanSeek && stream.Length == 0)
                 {
                     return default;
                 }
@@ -37,7 +38,10 @@ namespace MegaChatRoom.Messages.Repositories.Serializers
             MemoryStream streamPayload = new MemoryStream();
             systemTextJsonSerializer.Serialize(streamPayload, input, typeof(T), default);
             streamPayload.Position = 0;
+
             return streamPayload;
         }
     }
 }
+
+#nullable restore
