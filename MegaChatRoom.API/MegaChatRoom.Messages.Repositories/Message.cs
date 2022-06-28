@@ -6,7 +6,7 @@ namespace MegaChatRoom.Messages.Repositories
     {
         public Guid Id { get; set; }
         public string MessageContent { get; set; }
-        public string Timestamp { get; set; }
+        public DateTime Timestamp { get; set; }
         public string Username { get; set; }
     }
 }
