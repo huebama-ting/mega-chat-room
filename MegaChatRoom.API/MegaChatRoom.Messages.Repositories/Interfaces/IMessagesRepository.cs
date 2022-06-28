@@ -1,8 +1,8 @@
 ﻿using MegaChatRoom.Messages.Repositories.Base;
 
-namespace MegaChatRoom.Messages.Repositories.CosmosMessages
+namespace MegaChatRoom.Messages.Repositories.Interfaces
 {
-    public interface ICosmosMessagesRepository : IRepository
+    public interface IMessagesRepository : IRepository
     {
         Task<Message> GetAsync(Guid id);
         Task<IEnumerable<Message>> GetMultipleAsync(string timestamp);

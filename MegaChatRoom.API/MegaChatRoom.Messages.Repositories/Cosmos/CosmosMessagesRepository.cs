@@ -1,8 +1,9 @@
-﻿using Microsoft.Azure.Cosmos;
+﻿using MegaChatRoom.Messages.Repositories.Interfaces;
+using Microsoft.Azure.Cosmos;
 
-namespace MegaChatRoom.Messages.Repositories.CosmosMessages
+namespace MegaChatRoom.Messages.Repositories.Cosmos
 {
-    public class CosmosMessagesRepository : ICosmosMessagesRepository
+    public class CosmosMessagesRepository : IMessagesRepository
     {
         private readonly Container _container;
 

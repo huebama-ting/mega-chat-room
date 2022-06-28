@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MegaChatRoom.Messages.Repositories;
-using MegaChatRoom.Messages.Repositories.CosmosMessages;
-using MegaChatRoom.Messages.Repositories.Factories.CosmosMessages;
+using MegaChatRoom.Messages.Repositories.Factories.Base;
+using MegaChatRoom.Messages.Repositories.Interfaces;
 using MegaChatRoom.Messages.Services.Interfaces;
 using MegaChatRoom.Messages.Services.Models;
 
@@ -9,18 +9,18 @@ namespace MegaChatRoom.Messages.Services
 {
     public class MessagesService : IMessagesService
     {
-        private readonly ICosmosMessagesFactory<ICosmosMessagesRepository> _messageCacheFactory;
+        private readonly IRepositoryFactory<IMessagesRepository> _messageRepositoryFactory;
         private readonly IMapper _mapper;
 
-        public MessagesService(ICosmosMessagesFactory<ICosmosMessagesRepository> factory, IMapper mapper)
+        public MessagesService(IRepositoryFactory<IMessagesRepository> factory, IMapper mapper)
         {
-            _messageCacheFactory = factory;
+            _messageRepositoryFactory = factory;
             _mapper = mapper;
         }
 
         public async Task<IEnumerable<MessageModel>> GetAsync(string timestamp)
         {
-            var repository = await _messageCacheFactory.CreateAsync();
+            var repository = await _messageRepositoryFactory.CreateAsync();
             var results = _mapper.Map<List<MessageModel>>(await repository.GetMultipleAsync(timestamp));
 
             return results;
@@ -28,7 +28,7 @@ namespace MegaChatRoom.Messages.Services
 
         public async Task SaveAsync(MessageModel message)
         {
-            var repository = await _messageCacheFactory.CreateAsync();
+            var repository = await _messageRepositoryFactory.CreateAsync();
 
             await repository.SaveAsync(new Message()
             {
