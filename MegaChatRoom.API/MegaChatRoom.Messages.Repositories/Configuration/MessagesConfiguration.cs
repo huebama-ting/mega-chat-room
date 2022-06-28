@@ -1,6 +1,6 @@
 ﻿#nullable disable
 
-namespace MegaChatRoom.Messages.Configuration
+namespace MegaChatRoom.Messages.Repositories.Configuration
 {
     public class MessagesConfiguration
     {

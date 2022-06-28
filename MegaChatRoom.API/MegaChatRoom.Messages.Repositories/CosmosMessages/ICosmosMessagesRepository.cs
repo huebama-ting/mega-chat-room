@@ -1,6 +1,6 @@
-﻿using MegaChatRoom.Messages.Repositories.Repositories.Base;
+﻿using MegaChatRoom.Messages.Repositories.Base;
 
-namespace MegaChatRoom.Messages.Repositories.Repositories.CosmosMessages
+namespace MegaChatRoom.Messages.Repositories.CosmosMessages
 {
     public interface ICosmosMessagesRepository : IRepository
     {

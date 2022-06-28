@@ -1,7 +1,7 @@
 ﻿#nullable disable
 
-using MegaChatRoom.Messages.Configuration;
-using MegaChatRoom.Messages.Repositories.Repositories.Base;
+using MegaChatRoom.Messages.Repositories.Base;
+using MegaChatRoom.Messages.Repositories.Configuration;
 using MegaChatRoom.Messages.Repositories.Serializers;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Options;
@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace MegaChatRoom.Messages.Repositories.Factories.Base
 {
-    public abstract class BaseRepositoryFactory<T> : IBaseRepositoryFactory<T> where T : IRepository
+    public abstract class RepositoryFactory<T> : IRepositoryFactory<T> where T : IRepository
     {
         private readonly IOptions<MessagesConfiguration> _options;
         private string _uri { get; set; }
@@ -26,7 +26,7 @@ namespace MegaChatRoom.Messages.Repositories.Factories.Base
 
         protected abstract T CreateRepository();
 
-        protected BaseRepositoryFactory(IOptions<MessagesConfiguration> options)
+        protected RepositoryFactory(IOptions<MessagesConfiguration> options)
         {
             _options = options;
         }

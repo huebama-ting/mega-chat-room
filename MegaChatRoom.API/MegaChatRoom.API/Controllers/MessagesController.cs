@@ -1,4 +1,4 @@
-﻿using MegaChatRoom.API.Services.Interfaces;
+﻿using MegaChatRoom.Messages.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MegaChatRoom.API.Controllers
@@ -7,9 +7,9 @@ namespace MegaChatRoom.API.Controllers
     [Route("api/v1/[controller]")]
     public class MessagesController : ControllerBase
     {
-        private readonly IPersistenceService _persistenceService;
+        private readonly IMessagesService _persistenceService;
 
-        public MessagesController(IPersistenceService persistenceService)
+        public MessagesController(IMessagesService persistenceService)
         {
             _persistenceService = persistenceService;
         }
@@ -17,7 +17,7 @@ namespace MegaChatRoom.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Messages(string timestamp)
         {
-            var messages = await _persistenceService.GetMessages(timestamp);
+            var messages = await _persistenceService.GetAsync(timestamp);
 
             return Ok(messages);
         }

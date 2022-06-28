@@ -1,32 +1,32 @@
 ﻿using AutoMapper;
-using MegaChatRoom.API.Requests;
-using MegaChatRoom.API.Services.Interfaces;
-using MegaChatRoom.Messages;
+using MegaChatRoom.Messages.Repositories;
+using MegaChatRoom.Messages.Repositories.CosmosMessages;
 using MegaChatRoom.Messages.Repositories.Factories.CosmosMessages;
-using MegaChatRoom.Messages.Repositories.Repositories.CosmosMessages;
+using MegaChatRoom.Messages.Services.Interfaces;
+using MegaChatRoom.Messages.Services.Models;
 
-namespace MegaChatRoom.API.Services
+namespace MegaChatRoom.Messages.Services
 {
-    public class PersistenceService : IPersistenceService
+    public class MessagesService : IMessagesService
     {
         private readonly ICosmosMessagesFactory<ICosmosMessagesRepository> _messageCacheFactory;
         private readonly IMapper _mapper;
 
-        public PersistenceService(ICosmosMessagesFactory<ICosmosMessagesRepository> factory, IMapper mapper)
+        public MessagesService(ICosmosMessagesFactory<ICosmosMessagesRepository> factory, IMapper mapper)
         {
             _messageCacheFactory = factory;
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<SendMessageRequest>> GetMessages(string timestamp)
+        public async Task<IEnumerable<MessageModel>> GetAsync(string timestamp)
         {
             var repository = await _messageCacheFactory.CreateAsync();
-            var results = _mapper.Map<List<SendMessageRequest>>(await repository.GetMultipleAsync(timestamp));
+            var results = _mapper.Map<List<MessageModel>>(await repository.GetMultipleAsync(timestamp));
 
             return results;
         }
 
-        public async Task SaveMessage(SendMessageRequest message)
+        public async Task SaveAsync(MessageModel message)
         {
             var repository = await _messageCacheFactory.CreateAsync();
 

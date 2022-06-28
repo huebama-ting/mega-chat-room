@@ -1,8 +1,8 @@
 using MegaChatRoom.API.Extensions;
 using MegaChatRoom.API.Hubs;
 using MegaChatRoom.API.MapperProfiles;
-using MegaChatRoom.Messages.Configuration;
-using MegaChatRoom.Messages.Extensions;
+using MegaChatRoom.Messages.Repositories.Configuration;
+using MegaChatRoom.Messages.Repositories.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

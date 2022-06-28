@@ -1,5 +1,5 @@
-﻿using MegaChatRoom.API.Services;
-using MegaChatRoom.API.Services.Interfaces;
+﻿using MegaChatRoom.Messages.Services;
+using MegaChatRoom.Messages.Services.Interfaces;
 
 namespace MegaChatRoom.API.Extensions
 {
@@ -7,7 +7,7 @@ namespace MegaChatRoom.API.Extensions
     {
         public static IServiceCollection AddApiServices(this IServiceCollection services)
         {
-            services.AddSingleton<IPersistenceService, PersistenceService>();
+            services.AddSingleton<IMessagesService, MessagesService>();
 
             return services;
         }

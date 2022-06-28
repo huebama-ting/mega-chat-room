@@ -1,21 +1,21 @@
-﻿using MegaChatRoom.API.Requests;
-using MegaChatRoom.API.Services.Interfaces;
+﻿using MegaChatRoom.Messages.Services.Interfaces;
+using MegaChatRoom.Messages.Services.Models;
 using Microsoft.AspNetCore.SignalR;
 
 namespace MegaChatRoom.API.Hubs
 {
     public class ChatHub : Hub
     {
-        private readonly IPersistenceService _persistenceService;
+        private readonly IMessagesService _persistenceService;
 
-        public ChatHub(IPersistenceService persistenceService)
+        public ChatHub(IMessagesService persistenceService)
         {
             _persistenceService = persistenceService;
         }
 
-        public async Task SendMessage(SendMessageRequest message)
+        public async Task SendMessage(MessageModel message)
         {
-            await _persistenceService.SaveMessage(message);
+            await _persistenceService.SaveAsync(message);
             await Clients.All.SendAsync("messageReceived", message);
         }
     }

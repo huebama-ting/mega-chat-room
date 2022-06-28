@@ -1,16 +1,11 @@
-﻿using MegaChatRoom.Messages.Configuration;
+﻿using MegaChatRoom.Messages.Repositories.Configuration;
+using MegaChatRoom.Messages.Repositories.CosmosMessages;
 using MegaChatRoom.Messages.Repositories.Factories.Base;
-using MegaChatRoom.Messages.Repositories.Repositories.CosmosMessages;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MegaChatRoom.Messages.Repositories.Factories.CosmosMessages
-{ 
-    public class CosmosMessagesFactory : BaseRepositoryFactory<ICosmosMessagesRepository>, ICosmosMessagesFactory<ICosmosMessagesRepository>
+{
+    public class CosmosMessagesFactory : RepositoryFactory<ICosmosMessagesRepository>, ICosmosMessagesFactory<ICosmosMessagesRepository>
     {
         public CosmosMessagesFactory(IOptions<MessagesConfiguration> options) : base(options)
         {
@@ -23,7 +18,7 @@ namespace MegaChatRoom.Messages.Repositories.Factories.CosmosMessages
 
         protected override ICosmosMessagesRepository CreateRepository()
         {
-            return new Repositories.CosmosMessages.CosmosMessagesRepository(_container);
+            return new CosmosMessagesRepository(_container);
         }
     }
 }

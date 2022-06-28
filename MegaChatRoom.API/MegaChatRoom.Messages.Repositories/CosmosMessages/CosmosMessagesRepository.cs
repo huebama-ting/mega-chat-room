@@ -1,6 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos;
 
-namespace MegaChatRoom.Messages.Repositories.Repositories.CosmosMessages
+namespace MegaChatRoom.Messages.Repositories.CosmosMessages
 {
     public class CosmosMessagesRepository : ICosmosMessagesRepository
     {

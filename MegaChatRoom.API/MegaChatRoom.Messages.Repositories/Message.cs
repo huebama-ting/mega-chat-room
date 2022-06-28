@@ -1,8 +1,6 @@
 ﻿#nullable disable
 
-using System.Text.Json.Serialization;
-
-namespace MegaChatRoom.Messages
+namespace MegaChatRoom.Messages.Repositories
 {
     public class Message
     {

@@ -1,12 +1,12 @@
 ﻿#nullable disable
 
-using MegaChatRoom.Messages.Configuration;
+using MegaChatRoom.Messages.Repositories.Configuration;
+using MegaChatRoom.Messages.Repositories.CosmosMessages;
 using MegaChatRoom.Messages.Repositories.Factories.CosmosMessages;
-using MegaChatRoom.Messages.Repositories.Repositories.CosmosMessages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace MegaChatRoom.Messages.Extensions
+namespace MegaChatRoom.Messages.Repositories.Extensions
 {
     public static class MessagesRegistrationExtensions
     {
