@@ -1,17 +1,15 @@
-<h1>Enter a username!</h1>
-<form [formGroup]="usernameForm" (ngSubmit)="setUsername()">
-  <label for="username">Username: </label>
-  <input type="text" id="username" formControlName="username" required>
-  <div *ngIf="username.invalid && (username.dirty || username.touched)">
-    <div *ngIf="username.errors?.['required']">
-      Username is required!
-    </div>
-    <div *ngIf="username.errors?.['minlength']">
-      Username must be longer than 3 characters!
-    </div>
-    <div *ngIf="username.errors?.['maxlength']">
-      Username must be shorter than 32 characters!
-    </div>
-  </div>
-  <button type="submit">Submit</button>
-</form>
+<div class="container">
+  <h1>Enter a username!</h1>
+  <form [formGroup]="usernameForm" (ngSubmit)="setUsername()">
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Username</mat-label>
+      <input matInput required type="text" id="username" formControlName="username">
+      <fa-icon matPrefix [icon]="user"></fa-icon>
+    </mat-form-field>
+    <mat-error *ngIf="username.invalid && (username.dirty || username.touched)">{{errorMessage}}</mat-error>
+    <button mat-flat-button color="primary" type="submit">
+      <fa-icon [icon]="arrowRight"></fa-icon>
+      Submit
+    </button>
+  </form>
+</div>
