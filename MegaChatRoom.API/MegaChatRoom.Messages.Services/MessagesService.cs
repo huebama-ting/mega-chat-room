@@ -18,7 +18,7 @@ namespace MegaChatRoom.Messages.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<MessageModel>> GetAsync(string timestamp)
+        public async Task<IEnumerable<MessageModel>> GetAsync(DateTime timestamp)
         {
             var repository = await _messageRepositoryFactory.CreateAsync();
             var results = _mapper.Map<List<MessageModel>>(await repository.GetMultipleAsync(timestamp));

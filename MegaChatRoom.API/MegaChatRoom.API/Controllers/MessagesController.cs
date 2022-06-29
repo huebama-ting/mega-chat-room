@@ -15,7 +15,7 @@ namespace MegaChatRoom.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Messages(string timestamp)
+        public async Task<IActionResult> Messages(DateTime timestamp)
         {
             var messages = await _persistenceService.GetAsync(timestamp);
 

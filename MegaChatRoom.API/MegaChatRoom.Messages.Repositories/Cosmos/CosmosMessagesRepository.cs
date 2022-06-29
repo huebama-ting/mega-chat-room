@@ -1,10 +1,12 @@
 ﻿using MegaChatRoom.Messages.Repositories.Interfaces;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Linq;
 
 namespace MegaChatRoom.Messages.Repositories.Cosmos
 {
     public class CosmosMessagesRepository : IMessagesRepository
     {
+        private const int MAX_RESULTS = 10;
         private readonly Container _container;
 
         public CosmosMessagesRepository(Container container)
@@ -17,11 +19,14 @@ namespace MegaChatRoom.Messages.Repositories.Cosmos
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Message>> GetMultipleAsync(string timestamp)
+        public async Task<IEnumerable<Message>> GetMultipleAsync(DateTime timestamp)
         {
             var messages = new List<Message>();
-            using FeedIterator<Message> feed = _container.GetItemQueryIterator<Message>(
-                queryText: $"SELECT TOP 10 * FROM c WHERE c.timestamp < \"{timestamp}\" ORDER BY c.timestamp DESC");
+            using FeedIterator<Message> feed = _container.GetItemLinqQueryable<Message>()
+                .Where((message) => message.Timestamp < timestamp)
+                .OrderByDescending((message) => message.Timestamp)
+                .Take(MAX_RESULTS)
+                .ToFeedIterator();
 
             while (feed.HasMoreResults)
             {

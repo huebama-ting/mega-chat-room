@@ -51,10 +51,10 @@ namespace MegaChatRoom.Messages.Repositories.Factories.Base
         {
             var clientOptions = new CosmosClientOptions()
             {
-                Serializer = new NativeJsonSerializer(new JsonSerializerOptions()
+                SerializerOptions = new CosmosSerializationOptions()
                 {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                })
+                    PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase
+                }
             };
             var connectionString = $"AccountEndpoint={_uri};AccountKey={_dbKey}";
             _cosmosClient = new CosmosClient(connectionString, clientOptions);
