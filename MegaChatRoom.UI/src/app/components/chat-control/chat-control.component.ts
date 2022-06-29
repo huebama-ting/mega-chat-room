@@ -24,6 +24,16 @@ export class ChatControlComponent {
     return this.chatForm.get('message') as AbstractControl;
   }
 
+  get errorMessage(): string {
+    let errorMessage = '';
+
+    if (this.message.hasError('required')) {
+      errorMessage = 'Message is required.';
+    }
+
+    return errorMessage;
+  }
+
   sendChat(): void {
     if (this.chatForm.valid) {
       this.messageService.sendUserMessage(this.message.value);
