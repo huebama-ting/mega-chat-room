@@ -1,7 +1,6 @@
 <form autocomplete="off" [formGroup]="chatForm" (ngSubmit)="sendChat()">
   <mat-form-field appearance="fill">
-    <input matInput required type="text" formControlName="message" placeholder="Write a message...">
+    <input matInput type="text" formControlName="message" placeholder="Write a message...">
   </mat-form-field>
-  <mat-error *ngIf="message.invalid && (message.dirty || message.touched)">{{errorMessage}}</mat-error>
-  <button mat-flat-button color="primary" type="submit">Send</button>
+  <button mat-flat-button color="primary" type="submit" *ngIf="!message.hasError('isonlywhitespace')">Send</button>
 </form>

@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
-  FormGroup,
-  Validators
+  FormGroup
 } from '@angular/forms';
 
 import { MessageService } from 'src/app/services/message/message.service';
+import { whitespaceValidator } from 'src/app/shared/validators/whitespace.validator';
 
 @Component({
   selector: 'app-chat-control',
@@ -15,7 +15,7 @@ import { MessageService } from 'src/app/services/message/message.service';
 })
 export class ChatControlComponent {
   chatForm = new FormGroup({
-    message: new FormControl('', Validators.required)
+    message: new FormControl('', whitespaceValidator())
   });
 
   constructor(private messageService: MessageService) { }
@@ -24,19 +24,9 @@ export class ChatControlComponent {
     return this.chatForm.get('message') as AbstractControl;
   }
 
-  get errorMessage(): string {
-    let errorMessage = '';
-
-    if (this.message.hasError('required')) {
-      errorMessage = 'Message is required.';
-    }
-
-    return errorMessage;
-  }
-
   sendChat(): void {
     if (this.chatForm.valid) {
-      this.messageService.sendUserMessage(this.message.value);
+      this.messageService.sendUserMessage(this.message.value.trim());
       this.chatForm.reset();
     }
   }
