@@ -1,0 +1,17 @@
+.chat-message {
+  &__container {
+    width: 300px;
+    padding: 10px;
+    outline: 1px solid black;
+    gap: 10px;
+  }
+
+  &__details {
+    display: flex;
+
+    &__timestamp {
+      text-align: right;
+      flex-grow: 1;
+    }
+  }
+}

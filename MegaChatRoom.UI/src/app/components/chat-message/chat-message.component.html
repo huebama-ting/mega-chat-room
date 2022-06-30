@@ -1,3 +1,9 @@
-<div>
-  <strong>{{chatMessage.username}}</strong> at <em>{{chatMessage.timestamp}}</em>: {{chatMessage.message}}
+<div scroll class="chat-message__container">
+  {{chatMessage.message}}
+  <br>
+  <br>
+  <div class="chat-message__details">
+    <strong class="chat-message__details__username">{{chatMessage.username}}</strong>
+    <em class="chat-message__details__timestamp">{{chatMessage.timestamp}}</em>
+  </div>
 </div>
