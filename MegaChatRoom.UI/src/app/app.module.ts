@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -13,6 +14,8 @@ import { ChatDisplayComponent } from 'src/app/components/chat-display/chat-displ
 import { ChatMessageComponent } from './components/chat-message/chat-message.component';
 import { ChatMessageDirective } from 'src/app/directives/chat-message/chat-message.directive';
 import { ChatRoomComponent } from 'src/app/components/chat-room/chat-room.component';
+import { ChatUserComponent } from 'src/app/components/chat-user/chat-user.component';
+import { ChatUserListComponent } from 'src/app/components/chat-user-list/chat-user-list.component';
 import { ScrollDirective } from 'src/app/directives/scroll/scroll.directive';
 import { SignalRService } from 'src/app/services/signal-r/signal-r.service';
 import { UsernameEntryComponent } from 'src/app/components/username-entry/username-entry.component';
@@ -29,7 +32,9 @@ import { AppRoutingModule } from './app-routing.module';
     ChatMessageDirective,
     ChatRoomComponent,
     ScrollDirective,
-    UsernameEntryComponent
+    UsernameEntryComponent,
+    ChatUserListComponent,
+    ChatUserComponent
   ],
   imports: [
     AppRoutingModule,
@@ -40,6 +45,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTooltipModule,
     ReactiveFormsModule
   ],
   providers: [

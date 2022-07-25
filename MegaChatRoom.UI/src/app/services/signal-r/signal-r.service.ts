@@ -23,4 +23,13 @@ export class SignalRService {
   sendMessage(message: ChatMessageUser): void {
     this.hubConnection.send('sendMessage', message);
   }
+
+  connectUser(user: ChatMessageUser): void {
+    console.log('what')
+    this.hubConnection.send('connectUser', user);
+  }
+
+  disconnectUser(user: ChatMessageUser): void {
+    this.hubConnection.send('disconnectUser', user);
+  }
 }

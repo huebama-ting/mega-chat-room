@@ -18,5 +18,15 @@ namespace MegaChatRoom.API.Hubs
             await _persistenceService.SaveAsync(message);
             await Clients.All.SendAsync("messageReceived", message);
         }
+
+        public async Task ConnectUser(MessageModel user)
+        {
+            await Clients.All.SendAsync("userConnected", user);
+        }
+
+        public async Task DisconnectUser(MessageModel user)
+        {
+            await Clients.All.SendAsync("userDisconnected", user);
+        }
     }
 }
