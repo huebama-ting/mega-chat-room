@@ -6,7 +6,7 @@ import {
 
 export function whitespaceValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    const isOnlyWhitespace = control.value.trim().length === 0;
+    const isOnlyWhitespace = control.value?.trim().length === 0;
 
     return isOnlyWhitespace ? { isonlywhitespace: true } : null;
   };

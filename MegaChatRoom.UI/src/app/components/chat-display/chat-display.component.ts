@@ -1,3 +1,4 @@
+import { ReturnStatement } from '@angular/compiler';
 import {
   Component,
   OnInit,
@@ -37,6 +38,11 @@ export class ChatDisplayComponent implements OnInit {
         }
 
         this.sendJoinMessage();
+
+        if (messages.length === 0) {
+          return;
+        }
+        
         this.messageService.setLastMessageTimestamp(messages[0].timestamp);
       }),
       take(1)
