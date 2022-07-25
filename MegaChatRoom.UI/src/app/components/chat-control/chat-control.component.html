@@ -2,5 +2,5 @@
   <mat-form-field appearance="fill">
     <input matInput type="text" formControlName="message" placeholder="Write a message...">
   </mat-form-field>
-  <button mat-flat-button color="primary" type="submit" *ngIf="!message.hasError('isonlywhitespace')">Send</button>
+  <button mat-flat-button color="primary" type="submit" [disabled]="message.hasError('isonlywhitespace')">Send</button>
 </form>
